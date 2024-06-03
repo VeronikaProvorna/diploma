@@ -94,59 +94,72 @@ const FirstTemplate = ({ userData }) => {
                 {userData.personalData?.fullname}
             </Text>
             <View style={styles.contactsBox}>
-                <Text style={styles.contacts}>
-                    {userData.personalData?.address}
-                </Text>
-                <Text style={styles.contacts}>{`|`}</Text>
-                <Text style={styles.contacts}>
-                    {userData.personalData?.email}
-                </Text>
-                <Text style={styles.contacts}>{`|`}</Text>
-                <Text style={styles.contacts}>
-                    {userData.personalData?.number}
-                </Text>
+                {userData.personalData?.address && (
+                    <Text style={styles.contacts}>
+                        {userData.personalData?.address}
+                    </Text>
+                )}
+
+                {userData.personalData?.email && (
+                    <Text style={styles.contacts}>
+                        {userData.personalData?.email}
+                    </Text>
+                )}
+                {userData.personalData?.number && (
+                    <Text style={styles.contacts}>
+                        {userData.personalData?.number}
+                    </Text>
+                )}
             </View>
             <View style={styles.topDivider}></View>
-            <Text style={styles.description}>
-                {userData.personalData?.description}
-            </Text>
+            {userData.personalData?.description && (
+                <Text style={styles.description}>
+                    {userData.personalData?.description}
+                </Text>
+            )}
             <View style={styles.section}>
-                <View
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        fontSize: 12,
-                    }}
-                >
-                    <Text>{`GitHub: `}</Text>
-                    <Text style={{ color: "#607274" }}>
-                        {userData.personalData?.github}
-                    </Text>
-                </View>
-                <View
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        fontSize: 12,
-                    }}
-                >
-                    <Text>{`Website: `}</Text>
-                    <Text style={{ color: "#607274" }}>
-                        {userData.personalData?.website}
-                    </Text>
-                </View>
-                <View
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        fontSize: 12,
-                    }}
-                >
-                    <Text>{`LinkedIn: `}</Text>
-                    <Text style={{ color: "#607274" }}>
-                        {userData.personalData?.linkedin}
-                    </Text>
-                </View>
+                {userData.personalData?.github && (
+                    <View
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            fontSize: 12,
+                        }}
+                    >
+                        <Text>{`GitHub: `}</Text>
+                        <Text style={{ color: "#607274" }}>
+                            {userData.personalData?.github}
+                        </Text>
+                    </View>
+                )}
+                {userData.personalData?.website && (
+                    <View
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            fontSize: 12,
+                        }}
+                    >
+                        <Text>{`Website: `}</Text>
+                        <Text style={{ color: "#607274" }}>
+                            {userData.personalData?.website}
+                        </Text>
+                    </View>
+                )}
+                {userData.personalData?.linkedin && (
+                    <View
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            fontSize: 12,
+                        }}
+                    >
+                        <Text>{`LinkedIn: `}</Text>
+                        <Text style={{ color: "#607274" }}>
+                            {userData.personalData?.linkedin}
+                        </Text>
+                    </View>
+                )}
             </View>
         </View>
     );

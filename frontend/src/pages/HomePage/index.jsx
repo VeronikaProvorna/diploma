@@ -12,10 +12,10 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const idFromToken = getDecodedToken();
+        const decodedToken = getDecodedToken();
 
         axios
-            .get(`${API_BASE_URL}/templates/user/${idFromToken._id}`)
+            .get(`${API_BASE_URL}/templates/user/${decodedToken._id}`)
             .then((response) => {
                 setTemplates(response.data);
             })

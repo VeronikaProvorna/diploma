@@ -119,24 +119,36 @@ const SecondTemplate = ({ userData }) => {
         <View style={[styles.section, { fontSize: 11 }]}>
             <Text style={[styles.title]}>Contacts</Text>
             <View style={styles.divider}></View>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.address}
-            </Text>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.email}
-            </Text>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.number}
-            </Text>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.github}
-            </Text>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.website}
-            </Text>
-            <Text style={{ marginBottom: 6 }}>
-                {userData.personalData?.linkedin}
-            </Text>
+            {userData.personalData?.address && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.address}
+                </Text>
+            )}
+            {userData.personalData?.email && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.email}
+                </Text>
+            )}
+            {userData.personalData?.number && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.number}
+                </Text>
+            )}
+            {userData.personalData?.github && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.github}
+                </Text>
+            )}
+            {userData.personalData?.website && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.website}
+                </Text>
+            )}
+            {userData.personalData?.linkedin && (
+                <Text style={{ marginBottom: 6 }}>
+                    {userData.personalData.linkedin}
+                </Text>
+            )}
         </View>
     );
 

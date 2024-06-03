@@ -1,19 +1,31 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { UserDataContext } from "../../../../../../App";
 
 const PersonalData = () => {
-    const { userData, setUserData, templateId, setTemplateId } =
-        useContext(UserDataContext);
-    const [fullname, setFullname] = useState();
+    const { userData, setUserData } = useContext(UserDataContext);
+    const [fullname, setFullname] = useState(userData.personalData?.fullname);
     const [description, setDescription] = useState("");
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState(userData.personalData?.email);
     const [number, setNumber] = useState("");
     const [address, setAddress] = useState("");
     const [website, setWebsite] = useState("");
     const [linkedin, setLinkedin] = useState("");
     const [github, setGithub] = useState("");
+
+    useEffect(() => {
+        if (userData.personalData) {
+            setFullname(userData.personalData.fullname || "");
+            setDescription(userData.personalData?.description || "");
+            setEmail(userData.personalData.email || "");
+            setNumber(userData.personalData?.number || "");
+            setAddress(userData.personalData?.address || "");
+            setWebsite(userData.personalData?.website || "");
+            setLinkedin(userData.personalData?.linkedin || "");
+            setGithub(userData.personalData?.github || "");
+        }
+    }, [userData]);
 
     const timeoutRef = useRef(null);
 
@@ -52,7 +64,7 @@ const PersonalData = () => {
                 name="fullname"
                 fullWidth
                 sx={{ mb: 2 }}
-                value={fullname}
+                value={fullname || ""}
                 onChange={(event) =>
                     handleInputPersonalData(event, setFullname)
                 }
@@ -66,7 +78,7 @@ const PersonalData = () => {
                 fullWidth
                 multiline
                 minRows={3}
-                value={description}
+                value={description || ""}
                 onChange={(event) =>
                     handleInputPersonalData(event, setDescription)
                 }
@@ -79,7 +91,7 @@ const PersonalData = () => {
                     variant="outlined"
                     fullWidth
                     name="email"
-                    value={email}
+                    value={email || ""}
                     onChange={(event) =>
                         handleInputPersonalData(event, setEmail)
                     }
@@ -91,7 +103,7 @@ const PersonalData = () => {
                     variant="outlined"
                     sx={{ mb: 2 }}
                     name="number"
-                    value={number}
+                    value={number || ""}
                     onChange={(event) =>
                         handleInputPersonalData(event, setNumber)
                     }
@@ -103,7 +115,7 @@ const PersonalData = () => {
                 variant="outlined"
                 name="address"
                 sx={{ mb: 2 }}
-                value={address}
+                value={address || ""}
                 onChange={(event) => handleInputPersonalData(event, setAddress)}
             />
             <TextField
@@ -113,7 +125,7 @@ const PersonalData = () => {
                 name="linkedin"
                 sx={{ mb: 2 }}
                 fullWidth
-                value={linkedin}
+                value={linkedin || ""}
                 onChange={(event) =>
                     handleInputPersonalData(event, setLinkedin)
                 }
@@ -125,7 +137,7 @@ const PersonalData = () => {
                 name="github"
                 sx={{ mb: 2 }}
                 fullWidth
-                value={github}
+                value={github || ""}
                 onChange={(event) => handleInputPersonalData(event, setGithub)}
             />
             <TextField
@@ -135,7 +147,7 @@ const PersonalData = () => {
                 name="website"
                 sx={{ mb: 2 }}
                 fullWidth
-                value={website}
+                value={website || ""}
                 onChange={(event) => handleInputPersonalData(event, setWebsite)}
             />
         </Box>

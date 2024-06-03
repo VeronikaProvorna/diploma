@@ -6,6 +6,7 @@ import { UserDataContext } from "../../../../App";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { API_BASE_URL } from "../../../../constants/apiConstants";
+import { getDecodedToken } from "../../../../utils/getDecodedToken";
 
 const templates = ["Linear Template", "Column Template"];
 
@@ -25,13 +26,10 @@ const TemplatesViewer = ({ templateName }) => {
     };
 
     const handleSave = () => {
-        const token = localStorage.getItem("accessToken");
-
-        const decodedToken = jwtDecode(token);
-        const idFromToken = decodedToken._id;
+        const decodedToken = getDecodedToken();
 
         const templateData = {
-            createdBy: idFromToken,
+            createdBy: decodedToken._id,
             content: JSON.stringify(userData),
             name: selectedTemplate,
         };
@@ -53,9 +51,9 @@ const TemplatesViewer = ({ templateName }) => {
             // Create new template
             axios
                 .post(`${API_BASE_URL}/templates/create`, {
-                    createdBy: idFromToken,
+                    createdBy: decodedToken._id,
                     content: JSON.stringify(userData),
-                    name: "linear template",
+                    name: selectedTemplate,
                 })
                 .then((response) => {
                     console.log("Template saved:", response.data);
