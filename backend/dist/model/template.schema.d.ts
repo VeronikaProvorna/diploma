@@ -28,6 +28,7 @@ export declare class Template {
     createdBy: Types.ObjectId;
     content: Object;
     name: string;
+    title: string;
 }
 export declare const TemplateSchema: MongooseSchema<Template, import("mongoose").Model<Template, any, any, any, Document<unknown, any, Template> & Template & {
     _id: Types.ObjectId;

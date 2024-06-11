@@ -27,7 +27,7 @@ import { TemplateDocument } from '../model/template.schema';
 export declare class TemplateService {
     private templateModel;
     constructor(templateModel: Model<TemplateDocument>);
-    createTemplate(createdBy: ObjectId, content: Object, name: string): Promise<TemplateDocument>;
+    createTemplate(createdBy: ObjectId, content: Object, name: string, title: string): Promise<TemplateDocument>;
     findAllTemplatesByUserId(createdBy: ObjectId): Promise<TemplateDocument[]>;
     findAllTemplates(): Promise<TemplateDocument[]>;
     findTemplateById(templateId: ObjectId): Promise<TemplateDocument>;

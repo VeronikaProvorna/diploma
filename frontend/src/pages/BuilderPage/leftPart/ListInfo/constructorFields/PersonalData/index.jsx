@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { UserDataContext } from "../../../../../../App";
+import { Button, IconButton } from "@mui/material";
 
 const PersonalData = () => {
     const { userData, setUserData } = useContext(UserDataContext);
-    const [fullname, setFullname] = useState(userData.personalData?.fullname);
+    const [fullname, setFullname] = useState("");
     const [description, setDescription] = useState("");
-    const [email, setEmail] = useState(userData.personalData?.email);
+    const [email, setEmail] = useState("");
     const [number, setNumber] = useState("");
     const [address, setAddress] = useState("");
     const [website, setWebsite] = useState("");
     const [linkedin, setLinkedin] = useState("");
     const [github, setGithub] = useState("");
+    const [image, setImage] = useState("");
 
     useEffect(() => {
         if (userData.personalData) {
@@ -24,6 +28,7 @@ const PersonalData = () => {
             setWebsite(userData.personalData?.website || "");
             setLinkedin(userData.personalData?.linkedin || "");
             setGithub(userData.personalData?.github || "");
+            setImage(userData.personalData?.image || "");
         }
     }, [userData]);
 
@@ -47,6 +52,54 @@ const PersonalData = () => {
         }, 1000);
     };
 
+    const convertToBase64 = (e) => {
+        console.log("I am inside image upload ");
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+
+        reader.onload = () => {
+            setImage(reader.result);
+            console.log(reader.result);
+            setUserData((prevUserData) => ({
+                ...prevUserData,
+                personalData: {
+                    ...(prevUserData.personalData || {}),
+                    image: reader.result,
+                },
+            }));
+        };
+    };
+
+    const handleDeleteImage = () => {
+        setImage("");
+        setUserData((prevUserData) => ({
+            ...prevUserData,
+            personalData: {
+                ...(prevUserData.personalData || {}),
+                image: "",
+            },
+        }));
+    };
+
+    const showImage = (
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+            <img
+                width={150}
+                height={180}
+                src={image}
+                style={{ marginBottom: 2, marginTop: 2, marginRight: 16 }}
+            />
+            <IconButton
+                aria-label="delete"
+                size="large"
+                onClick={handleDeleteImage}
+                variant="outlined"
+            >
+                <DeleteIcon />
+            </IconButton>
+        </Box>
+    );
+
     return (
         <Box
             component="form"
@@ -57,6 +110,17 @@ const PersonalData = () => {
             noValidate
             autoComplete="off"
         >
+            {image == "" || image == null ? "" : showImage}
+            <Button
+                style={{ marginBottom: 20, marginTop: 12 }}
+                variant="contained"
+                component="label"
+                startIcon={<CloudUploadIcon />}
+            >
+                Upload profile picture
+                <input type="file" hidden onChange={convertToBase64} />
+            </Button>
+
             <TextField
                 id="outlined-basic"
                 label="Name and surname"

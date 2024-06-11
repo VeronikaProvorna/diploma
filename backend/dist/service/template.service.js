@@ -21,16 +21,16 @@ let TemplateService = class TemplateService {
     constructor(templateModel) {
         this.templateModel = templateModel;
     }
-    async createTemplate(createdBy, content, name) {
+    async createTemplate(createdBy, content, name, title) {
         const createdTemplate = new this.templateModel({
             createdBy,
             content,
             name,
+            title,
         });
         return await createdTemplate.save();
     }
     async findAllTemplatesByUserId(createdBy) {
-        console.log('userid in find all by userid', createdBy);
         return await this.templateModel.find({ createdBy }).exec();
     }
     async findAllTemplates() {

@@ -21,13 +21,12 @@ let UserController = class UserController {
         this.userService = userService;
     }
     async getUser(username) {
-        console.log('inside get user');
         return this.userService.findUserByName(username);
     }
     async createUser(userDto) {
         return this.userService.createUser(userDto);
     }
-    async delete(id) {
+    async deleteUser(id) {
         return this.userService.deleteUser(id);
     }
 };
@@ -52,7 +51,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], UserController.prototype, "delete", null);
+], UserController.prototype, "deleteUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [user_service_1.UserService])

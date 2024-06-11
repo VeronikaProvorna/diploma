@@ -21,16 +21,13 @@ let TemplateController = class TemplateController {
         this.templateService = templateService;
     }
     async find(id) {
-        console.log('find by template id :', id);
         return this.templateService.findTemplateById(id);
     }
     async findAllByUserId(id) {
-        console.log('find by template user id :', id);
         return this.templateService.findAllTemplatesByUserId(id);
     }
     async create(templateDto) {
-        console.log('create template: ', templateDto);
-        return this.templateService.createTemplate(templateDto.createdBy, templateDto.content, templateDto.name);
+        return this.templateService.createTemplate(templateDto.createdBy, templateDto.content, templateDto.name, templateDto.title);
     }
     async update(id, templateDto) {
         return this.templateService.updateTemplate(id, templateDto);

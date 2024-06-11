@@ -11,18 +11,6 @@ const RegisterPage = () => {
 
     const navigate = useNavigate();
 
-    const checkLoginExist = () => {
-        const payload = { username: username };
-        axios
-            .get(API_BASE_URL + "/users", payload)
-            .then((response) => {
-                setErrorMessage("Same login already exist!");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
     const registerUser = () => {
         const payload = {
             username: username,

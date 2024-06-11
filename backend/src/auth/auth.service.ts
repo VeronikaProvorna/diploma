@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../service/user.service';
-import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +23,7 @@ export class AuthService {
 
   async login(username: string) {
     const { _id } = await this.userService.findUserByName(username);
-    console.log('Id: ', _id);
+
     const payload = {
       username,
       _id,

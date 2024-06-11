@@ -5,6 +5,7 @@ import { API_BASE_URL } from "../../constants/apiConstants";
 import { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../App";
 import { getDecodedToken } from "../../utils/getDecodedToken";
+import UserTemplateCard from "./UserTemplateCard";
 
 const HomePage = () => {
     const [templates, setTemplates] = useState([]);
@@ -133,51 +134,17 @@ const HomePage = () => {
                         display: "flex",
                         flexDirection: "row",
                         flexWrap: "wrap",
+                        overflowY: "auto",
                     }}
                 >
                     {templates?.map((template) => (
-                        <div
-                            style={{
-                                width: "200px",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                cursor: "pointer",
-                                background:
-                                    "linear-gradient(130deg, rgba(218,50,169,1) 44%, rgba(136,0,255,1) 100%)",
-
-                                padding: "5px",
-                                margin: "10px",
-                                color: "white",
-                            }}
-                            onClick={() => handleCreateCV(template._id)}
-                        >
-                            <span style={{ marginBottom: "6px" }}>
-                                {template.name}
-                            </span>
-
-                            <Button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteTemplate(template._id);
-                                }}
-                                variant="outlined"
-                                style={{
-                                    color: "white",
-                                    textTransform: "capitalize",
-                                    height: 50,
-                                    width: 150,
-                                    fontSize: 16,
-                                    borderColor: "white",
-                                    marginTop: 30,
-                                    marginBottom: 30,
-                                    borderRadius: 30,
-                                }}
-                            >
-                                Delete
-                            </Button>
-                        </div>
+                        <UserTemplateCard
+                            handleCreateCV={() => handleCreateCV(template._id)}
+                            handleDeleteTemplate={() =>
+                                handleDeleteTemplate(template._id)
+                            }
+                            template={template}
+                        />
                     ))}
                 </Box>
             </Box>

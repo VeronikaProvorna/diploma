@@ -27,4 +27,5 @@ export declare class TemplateDto {
     createdBy: ObjectId;
     content: Object;
     name: string;
+    title: string;
 }

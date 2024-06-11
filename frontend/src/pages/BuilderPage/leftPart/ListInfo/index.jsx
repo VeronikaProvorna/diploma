@@ -7,10 +7,12 @@ import Education from "./constructorFields/Education";
 import Experience from "./constructorFields/Experience";
 import Certificates from "./constructorFields/Certificates";
 import SoftSkills from "./constructorFields/SoftSkills";
+import Title from "./constructorFields/Title";
 
 const ListInfo = () => {
     return (
         <>
+            <Title />
             <InfoListItem
                 name={"Personal data"}
                 DescriptionComponent={PersonalData}

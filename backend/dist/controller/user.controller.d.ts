@@ -5,5 +5,5 @@ export declare class UserController {
     constructor(userService: UserService);
     getUser(username: string): Promise<import("../model/user.schema").UserDocument>;
     createUser(userDto: UserDto): Promise<import("../model/user.schema").UserDocument>;
-    delete(id: string): Promise<import("../model/user.schema").UserDocument>;
+    deleteUser(id: string): Promise<import("../model/user.schema").UserDocument>;
 }

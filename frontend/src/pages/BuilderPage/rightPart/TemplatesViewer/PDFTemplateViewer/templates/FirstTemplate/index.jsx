@@ -262,6 +262,7 @@ const FirstTemplate = ({ userData }) => {
                                 }}
                             >
                                 <Text key={index}>
+                                    {""}
                                     {skill?.name}
                                     {`: `}
                                     {skill?.level !== 0 ? skill?.level : ""}

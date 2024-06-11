@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Param,
-  Body,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { UserDto } from '../dto/user.dto';
 
@@ -17,7 +8,6 @@ export class UserController {
 
   @Get(':username')
   async getUser(@Param('username') username: string) {
-    console.log('inside get user');
     return this.userService.findUserByName(username);
   }
 
@@ -27,7 +17,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  async deleteUser(@Param('id') id: string) {
     return this.userService.deleteUser(id);
   }
 }

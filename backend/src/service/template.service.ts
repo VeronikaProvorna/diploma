@@ -2,25 +2,24 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId, Types } from 'mongoose';
 import { Template, TemplateDocument } from '../model/template.schema';
-import { TemplateDto } from 'src/dto/template.dto';
-import { User, UserDocument } from '../model/user.schema';
 
 @Injectable()
 export class TemplateService {
   constructor(
     @InjectModel(Template.name) private templateModel: Model<TemplateDocument>,
-    //@InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
   async createTemplate(
     createdBy: ObjectId,
     content: Object,
     name: string,
+    title: string,
   ): Promise<TemplateDocument> {
     const createdTemplate = new this.templateModel({
       createdBy,
       content,
       name,
+      title,
     });
 
     return await createdTemplate.save();
@@ -29,7 +28,6 @@ export class TemplateService {
   async findAllTemplatesByUserId(
     createdBy: ObjectId,
   ): Promise<TemplateDocument[]> {
-    console.log('userid in find all by userid', createdBy);
     return await this.templateModel.find({ createdBy }).exec();
   }
 

@@ -1,35 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+    Document,
+    Page,
+    Text,
+    View,
+    StyleSheet,
+    Image,
+} from "@react-pdf/renderer";
 import dayjs from "dayjs";
-
-/**
- * <PDFDownloadLink
-                document={<Resume userData={userData} />}
-                fileName="somename.pdf"
-            >
-                {({ loading }) =>
-                    loading ? "Loading document..." : "Download now!"
-                }
-            </PDFDownloadLink>
-             <PDFViewer showToolbar={false} height="100%" width="100%">
-                <Resume userData={userData} />
-            </PDFViewer>
-
-            {isLoading && (
-                <Box
-                    sx={{
-                        zIndex: 3,
-                        margin: "23%",
-                        position: "absolute",
-                        display: "flex",
-                        justifyContent: "center",
-                    }}
-                >
-                    <CircularProgress />
-                </Box>
-            )}
- * 
- */
 
 const styles = StyleSheet.create({
     page: {
@@ -105,13 +83,38 @@ const SecondTemplate = ({ userData }) => {
     const formatDate = (date) => (date ? dayjs(date).format("MM.YYYY") : "");
 
     const PersonalDataBlock = (
-        <View style={styles.section}>
-            <Text style={styles.fullname}>
-                {userData.personalData?.fullname}
-            </Text>
-            <Text style={{ marginBottom: 7, color: "000000" }}>
-                {userData.personalData?.description}
-            </Text>
+        <View
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+            }}
+        >
+            <View
+                style={{
+                    flexGrow: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    flexWrap: "wrap",
+                }}
+            >
+                <Text style={styles.fullname}>
+                    {userData.personalData?.fullname}
+                </Text>
+                <Text style={{ marginBottom: 7, color: "000000" }}>
+                    {userData.personalData?.description}
+                </Text>
+            </View>
+            <View>
+                {userData.personalData?.image && (
+                    <Image
+                        src={userData.personalData.image}
+                        style={{ width: "110px", height: "140px" }}
+                    />
+                )}
+            </View>
         </View>
     );
 

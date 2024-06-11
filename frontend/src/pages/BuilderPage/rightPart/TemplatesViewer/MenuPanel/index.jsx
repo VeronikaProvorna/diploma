@@ -13,8 +13,8 @@ const MenuPanel = ({
     onSave,
     templates,
     selectedTemplate,
+    onHome,
 }) => {
-    const navigate = useNavigate();
     const { userData } = useContext(UserDataContext);
 
     const templatesComponents = [
@@ -31,10 +31,6 @@ const MenuPanel = ({
     const selectedTemplateComponent = templatesComponents.find(
         (t) => t.name === selectedTemplate
     )?.component;
-
-    const handleHome = () => {
-        navigate("/home");
-    };
 
     return (
         <Box
@@ -108,7 +104,7 @@ const MenuPanel = ({
                     borderRadius: 30,
                     fontSize: 16,
                 }}
-                onClick={handleHome}
+                onClick={onHome}
             >
                 Home
             </Button>
